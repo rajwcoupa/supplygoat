@@ -45,9 +45,6 @@ resource "aws_s3_bucket" "operations" {
   bucket = "${local.resource_prefix.value}-operations"
   region        = "us-west-2"
   acl    = "private"
-  versioning {
-    enabled = true
-  }
   force_destroy = true
   tags = {
     Name        = "${local.resource_prefix.value}-operations"
@@ -61,9 +58,6 @@ resource "aws_s3_bucket" "data_science" {
   bucket = "${local.resource_prefix.value}-data-science"
   region        = "us-west-2"
   acl    = "private"
-  versioning {
-    enabled = true
-  }
   logging {
     target_bucket = "${aws_s3_bucket.logs.id}"
     target_prefix = "log/"
@@ -75,9 +69,6 @@ resource "aws_s3_bucket" "logs" {
   bucket = "${local.resource_prefix.value}-logs"
   region = "us-west-2"
   acl    = "log-delivery-write"
-  versioning {
-    enabled = true
-  }
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
